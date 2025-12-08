@@ -1,0 +1,26 @@
+# OSX
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Environment & local config
+.env
+.env.*
+
+# Node / frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+# Logs
+*.log
+
+# VSCode / IDE
+.vscode/
+.idea/
+
