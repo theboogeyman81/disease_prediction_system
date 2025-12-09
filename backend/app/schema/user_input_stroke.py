@@ -1,12 +1,11 @@
 
 from typing import Annotated, Literal
-from pydantic import BaseModel Field , computed_field , field_validator
-from typingAnnotated,  Literal , Annotated
+from pydantic import BaseModel , Field , computed_field , field_validator
 
 
 
 
-class UserInput(BaseModel):
+class UserInputS(BaseModel):
     gender:Annotated[Literal['male' , 'femal'] , Field(...,description='gender of the patient')]
     age: Annotated[int , Field(... , gt=0 , lt=100 , description='age of the patient')]
     hypertension: Annotated[bool , Field(... , description='Hypertension binary feature')]
@@ -18,3 +17,10 @@ class UserInput(BaseModel):
     weight:Annotated[float , Field(... , description='Weight of the patient')]
     SmokingStatus: Annotated[Literal['never smoked' , 'unknown' , 'formerly smoked'] , Field(... , description='Smoking status of the patient')]
 
+
+
+
+@computed_field
+@property
+def bmi(self) -> float:
+    return self.weight/(self.height**2)

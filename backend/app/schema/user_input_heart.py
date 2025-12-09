@@ -1,11 +1,11 @@
 
 from typing import Annotated, Literal
 from pydantic import BaseModel , Field , compute_field , field_validator
-from typingAnnotated, ,  Literal , Annotated
 
 
 
-class UserInput(BaseModel):
+
+class UserInputH(BaseModel):
     age: Annotated[int , Field(...,gt=25 , lt=100, description='Age of the patient')]
     sex: Annotated[Literal['male' , 'female'] , Field(...,description='Aex of the patient')]
     cp: Annotated[Literal['0' , '1 ' , '2' , '3'] , Field(... , description='chest pain type')]

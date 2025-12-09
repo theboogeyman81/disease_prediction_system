@@ -2,7 +2,7 @@ from pydantic import BaseModel , Field , computed_field , field_validator
 from typing import Literal , Annotated
 
 
-class UserInput(BaseModel):
+class UserInputD(BaseModel):
     pregnancies:Annotated[int , Field(..., gt=0 , lt=20 , description='Number of times pregnant')]
     glucose: Annotated[int , Field(... , gt=0 , lt=200 , description='Plasma glucose concentration a 2 hours in an oral glucose tolerance test')]
     bloodPressure : Annotated[int , Field(... , gt=0 , lt=150 , description='Diastolic blood pressure (mm Hg)')]

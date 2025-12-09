@@ -1,5 +1,8 @@
 from fastapi import FastAPI , Path , Query
 from fastapi.middleware.cors import CORSMiddleware
+from starlette.responses import JSONResponse
+from backend.app.schema.user_input_disbetes import UserInputD
+from backend.app.schema.user_input_heart import UserInputH
 
 
 
@@ -26,3 +29,57 @@ def health_check():
         'version' : MODEL_VERSION,
         'model_loaded' : model is not None
     }
+
+
+
+@app.post('/predict_diabetes')
+def predict_diabetes(data: UserInputD):
+    user_input ={
+        'pregnancies':data.pregnancies,
+        'glucose':data.glucose,
+        'bloodPressure':data.bloodPressure,
+        'skinThickness':data.skinThickness,
+        'insulin':data.insulin,
+        'weight': data.weight,
+        'diabetesPedigree': data.diabetesPedigree,
+        'age': data.age
+    }
+
+    try: 
+        prediction = predict_ouput(user_input)
+
+        return prediction
+
+    except Exception as e:
+
+        return JSONResponse(status_code=500,content={'error':str(e)})
+
+
+@app.post('/predict_heart')
+def predict_heart(data:UserInputH):
+    user_input= {
+        'age':data.age,
+        'sex':data.sex,
+        'cp':data.cp,
+        'trestbps':data.tretbps,
+        'chol':data.chol,
+        'fbs':data.fbs,
+        'restecg':data.restecg,
+        'thalach':data.thalach,
+        'exang' : data.exang,
+        'oldpeak': data.oldpeak,
+        'slope':data.slope,
+        'ca' : data.ca,
+        'thal':data.thal
+    }
+
+    try: 
+        prediction = predict_ouput(user_input)
+
+        return prediction
+
+    except Exception as e:
+
+        return JSONResponse(status_code=500,content={'error':str(e)})
+
+
