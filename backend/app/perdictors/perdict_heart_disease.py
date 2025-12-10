@@ -11,7 +11,7 @@ MODEL_VERSION = '1.0.0'
 
 class_labels = model.classes_.tolist()
 
-def predict_output(user_input:dict):
+def predict_output_heart(user_input:dict):
 
     df = pd.DataFrame([user_input])
 

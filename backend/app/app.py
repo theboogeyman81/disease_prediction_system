@@ -1,3 +1,7 @@
+from backend.app.perdictors.perdict_heart_disease import predict_output_heart
+from backend.app.perdictors.perdict_stroke import predict_output_storke
+from backend.app.perdictors.predict_diabetes import predict_output_diabetes
+from backend.app.schema.user_input_stroke import UserInputS
 from fastapi import FastAPI , Path , Query
 from fastapi.middleware.cors import CORSMiddleware
 from starlette.responses import JSONResponse
@@ -46,7 +50,7 @@ def predict_diabetes(data: UserInputD):
     }
 
     try: 
-        prediction = predict_ouput(user_input)
+        prediction = predict_output_diabetes(user_input)
 
         return prediction
 
@@ -74,12 +78,40 @@ def predict_heart(data:UserInputH):
     }
 
     try: 
-        prediction = predict_ouput(user_input)
+        prediction = predict_output_heart(user_input)
 
         return prediction
 
     except Exception as e:
 
         return JSONResponse(status_code=500,content={'error':str(e)})
+
+
+@app.post('/predict_storke')
+def perdict_storke(data:UserInputS):
+    user_input={
+        'gender':data.gender,
+        'age':data.age,
+        'hypertension':data.hypertension,
+        'heartDisease':data.heartDisease,
+        'everMarried':data.everMarried,
+        'workType':data.workType,
+        'Residence_type':data.Residence_type,
+        'AvgGlusoselLevel':data.AvgGlucoseLevel,
+        'weight':data.weight,
+        'SmokingStatus':data.SmokingStatus
+    }
+
+
+    try:
+        prediction = predict_output_storke(user_input)
+
+        return prediction
+
+    except Exception as e:
+
+        return JSONResponse(status_code=500, content={'error': str(e)})
+
+
 
 
