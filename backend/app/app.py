@@ -1,12 +1,12 @@
-from backend.app.perdictors.perdict_heart_disease import predict_output_heart
-from backend.app.perdictors.perdict_stroke import predict_output_storke
-from backend.app.perdictors.predict_diabetes import predict_output_diabetes
-from backend.app.schema.user_input_stroke import UserInputS
+from .perdictors.perdict_heart_disease import predict_output_heart
+from .perdictors.perdict_stroke import predict_output_storke
+from .perdictors.predict_diabetes import predict_output_diabetes
+from .schema.user_input_stroke import UserInputS
 from fastapi import FastAPI , Path , Query
 from fastapi.middleware.cors import CORSMiddleware
 from starlette.responses import JSONResponse
-from backend.app.schema.user_input_disbetes import UserInputD
-from backend.app.schema.user_input_heart import UserInputH
+from .schema.user_input_disbetes import UserInputD
+from .schema.user_input_heart import UserInputH
 
 
 
@@ -29,9 +29,8 @@ def home():
 @app.get("/health")
 def health_check():
     return{
-        'satuts' : 'OK',
-        'version' : MODEL_VERSION,
-        'model_loaded' : model is not None
+        'status' : 'OK',
+        'message' : 'Disease Prediction System API is running'
     }
 
 
