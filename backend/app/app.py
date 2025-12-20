@@ -1,5 +1,5 @@
 from .perdictors.perdict_heart_disease import predict_output_heart
-from .perdictors.perdict_stroke import predict_output_storke
+from .perdictors.perdict_stroke import predict_output_stroke
 from .perdictors.predict_diabetes import predict_output_diabetes
 from .schema.user_input_stroke import UserInputS
 from fastapi import FastAPI , Path , Query
@@ -64,7 +64,7 @@ def predict_heart(data:UserInputH):
         'age':data.age,
         'sex':data.sex,
         'cp':data.cp,
-        'trestbps':data.tretbps,
+        'trestbps':data.trestbps,
         'chol':data.chol,
         'fbs':data.fbs,
         'restecg':data.restecg,
@@ -86,8 +86,8 @@ def predict_heart(data:UserInputH):
         return JSONResponse(status_code=500,content={'error':str(e)})
 
 
-@app.post('/predict_storke')
-def perdict_storke(data:UserInputS):
+@app.post('/predict_stroke')
+def predict_stroke(data:UserInputS):
     user_input={
         'gender':data.gender,
         'age':data.age,
@@ -96,14 +96,14 @@ def perdict_storke(data:UserInputS):
         'everMarried':data.everMarried,
         'workType':data.workType,
         'Residence_type':data.Residence_type,
-        'AvgGlusoselLevel':data.AvgGlucoseLevel,
+        'AvgGlucoseLevel':data.AvgGlucoseLevel,
         'weight':data.weight,
         'SmokingStatus':data.SmokingStatus
     }
 
 
     try:
-        prediction = predict_output_storke(user_input)
+        prediction = predict_output_stroke(user_input)
 
         return prediction
 

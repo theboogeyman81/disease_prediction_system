@@ -20,11 +20,9 @@ function App() {
           <Route path='models' element={<Models />} />
           <Route path='diabetesform' element={<DiabetesForm />} />
           <Route path='heartform' element={<HeartForm />} />
-          <Route path='storkeform' element={<StrokeForm />} />
-
+          <Route path='strokeform' element={<StrokeForm />} />
         </Routes>
       </div>
-
     </BrowserRouter>
   )
 }

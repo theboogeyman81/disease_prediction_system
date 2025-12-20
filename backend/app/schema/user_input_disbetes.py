@@ -11,11 +11,3 @@ class UserInputD(BaseModel):
     weight:Annotated[int , Field(... , gt=20 , description='Weight of the patient')]
     diabetesPedigree:Annotated[int , Field(... , gt=0 , lt=3 , description='Diabetes pedigree function')]
     age:Annotated[int , Field(..., gt=20 , lt= 100 , description='Age of the patient')]
-
-
-@computed_field
-@property
-def bmi(self) -> float:
-    return self.weight/(self.height**2)
-
-    

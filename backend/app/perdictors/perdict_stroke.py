@@ -2,7 +2,7 @@ import os
 import pickle
 import pandas as pd 
 
-MODEL_PATH = os.path.join(os.path.dirname(__file__) , "diabetes.pkl")
+MODEL_PATH = os.path.join(os.path.dirname(__file__) , "stroke.pkl")
 with open(MODEL_PATH , "rb") as f:
     model = pickle.load(f)
 
@@ -11,7 +11,7 @@ MODEL_VERSION = '1.0.0'
 
 class_labels = model.classes_.tolist()
 
-def predict_output_storke(user_input:dict):
+def predict_output_stroke(user_input:dict):
 
     df = pd.DataFrame([user_input])
 
